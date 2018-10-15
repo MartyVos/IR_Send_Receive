@@ -10,6 +10,8 @@ int main(){
     
     IR_Receive Rec(IN);
     for(;;){
-        hwlib::cout << Rec.receive()[0] << "\t" << Rec.receive()[1] << hwlib::endl;
+        if(IN.get() == 0){
+            hwlib::cout << Rec.receive()[0] << "\t" << Rec.receive()[1] << hwlib::endl;
+        }
     }
 }

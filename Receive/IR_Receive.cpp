@@ -23,15 +23,13 @@ void IR_Receive::getDecodedData(){
 }
 
 std::array<uint8_t, 2> IR_Receive::receive(){
-    if(pin.get() == 0){
-        for(int i=0; i<16; i++){
-            dataIn = (pin.get() << i);
-        }
-        decodeData();
-        if(!invalidXor){
-            getDecodedData();
-            return decData;
-        }
+    for(int i=0; i<16; i++){
+        dataIn = (pin.get() << i);
+    }
+    decodeData();
+    if(!invalidXor){
+        getDecodedData();
+        return decData;
     }
     invalidXor = false;
     return {uint8_t(0xFF), uint8_t(0xFF)};
